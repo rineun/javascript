@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            /*
+이진트리 넓이우선탐색(BFS)
+아래 그림과 같은 이진트리를 넓이우선탐색해 보세요
+            */
+            function solution(n){
+                let answer="";
+                let queue=[];
+                queue.push(1);
+                while(queue.length){
+                    let v = queue.shift();
+                    answer+=v+ " ";
+                    for(let nv of [v*2, v*2+1]){
+                        if(nv>7) continue;
+                        queue.push(nv);
+                    }
+                }
+              
+                return answer;
+            }
+
+            console.log(solution());
+        </script>
+    </body>
+</html>
