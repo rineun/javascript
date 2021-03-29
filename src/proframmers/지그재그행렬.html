@@ -1,0 +1,56 @@
+ㅜ<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        /*
+ 
+          */
+        function solution(n, r, c) {
+            var answer = 0;
+            let dir = 'U';
+
+            let tmp = Array.from(Array(n), () => Array(n).fill(0));
+            let cnt = 1;
+            let x = 0;
+            let y = -1;
+            let total = n * n;
+
+            while (cnt <= total) {
+                if (x === n - 1 && cnt <= total) {
+                    tmp[++y][x] = cnt++;
+                    dir = 'D';
+                }
+                if (y === n - 1 && cnt <= total) {
+                    tmp[y][++x] = cnt++;
+                    dir = 'U';
+                }
+                if (y === 0 && cnt <= total) {
+                    tmp[y][++x] = cnt++;
+                    dir = 'D';
+                }
+                if (x === 0 && cnt <= total) {
+                    tmp[++y][x] = cnt++
+                    dir = 'U';
+                }
+
+                if (dir === 'U' && x !== n - 1 && y !== 0 && cnt <= total) tmp[--y][++x] = cnt++;
+                if (dir === 'D' && y !== n - 1 && x !== 0 && cnt <= total) tmp[++y][--x] = cnt++;
+            }
+
+            answer = tmp[r - 1][c - 1];
+
+
+
+            return answer;
+        }
+        let str = "";
+        console.log(solution(5, 3, 2));
+    </script>
+</body>
+
+</html>
