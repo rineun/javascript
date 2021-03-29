@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        /*
+
+          */
+        function solution(matrix, r) {
+            var answer = [[]];
+            let len = matrix.length;
+            answer = Array.from(Array(len), (v, i) => Array(len).fill(i + 1));
+            let rtcnt = r % 4;
+
+            if (rtcnt === 1) {
+                for (let row = 0; row < len; row++) {
+                    for (let col = 0; col < len; col++) {
+                        answer[col][len - 1 - row] = matrix[row][col];
+                    }
+                }
+            } else if (rtcnt === 2) {
+                for (let row = 0; row < len; row++) {
+                    for (let col = 0; col < len; col++) {
+                        answer[len - 1 - row][len - 1 - col] = matrix[row][col];
+                    }
+                }
+            } else if (rtcnt === 3) {
+                for (let row = 0; row < len; row++) {
+                    for (let col = 0; col < len; col++) {
+                        answer[len - 1 - col][row] = matrix[row][col];
+                    }
+                }
+            } else {
+                return matrix;
+            }
+
+            return answer;
+        }
+        let str = "";
+        console.log(solution( [[1,2],[3,4]], 3));
+    </script>
+</body>
+
+</html>
