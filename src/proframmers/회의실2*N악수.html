@@ -1,0 +1,29 @@
+ㅜ<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        /*
+ 
+          */
+        function solution(N) {
+            var answer = 0;
+            let dy = Array.from({ length: N + 1 }, () => 0);
+            dy[1] = 1;
+            dy[2] = 2;
+            for (let i = 3; i <= N; i++) {
+                dy[i] = dy[i - 2] + dy[i - 1];
+            }
+            answer = dy[N];
+            return answer;
+        }
+        let str = "";
+        console.log(solution(5));
+    </script>
+</body>
+
+</html>
