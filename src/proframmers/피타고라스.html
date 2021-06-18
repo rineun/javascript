@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        /*
+
+
+          */
+        function solution(n) {
+            var a, b, c;
+            for (var i = 1; i < n; i++) {
+                a = i;
+                var t = n - i;
+                c = parseInt((a * a + t * t) / (2 * t));
+                b = n - a - c;
+                if (a * a + b * b == c * c && a<b<c){
+                    console.log(a,b,c);
+                }
+            }
+            console.log(a,b,c);
+            return a * b * c;
+
+        }
+        let str = "";
+        console.log(solution(1000));
+    </script>
+</body>
+
+</html>
