@@ -23,26 +23,33 @@ location은 0 이상 (현재 대기목록에 있는 작업 수 - 1) 이하의 �
           */
         function solution(priorities, location) {
             var answer = 0;
+            var arr = priorities.map((item, index) => ({
+                target: index === location, // 인쇄 요청한 문서
+                value: item // 중요도
+            }));
 
-            while (priorities.length > 0) {
-                console.log(priorities);
-                let job = priorities.shift();
-                if (priorities.some(i => {
-                    console.log(i,job);
-                    return i > job
-                    }
-                    )) {
-                    priorities.push(job);
-                    if (location == 0) location = priorities.length - 1;
-                    else location--;
+            while (true) {
+                // 현재 인쇄할 차례인 문서를 대기목록에서 제거
+                const front = arr.shift();
+
+                // 대기목록중에 현재 인쇄할 문서보다 중요도가 높은 문서가 있다면
+                if (arr.some(item => item.value > front.value)) {
+                   
+                    // 현재 문서를 제일 뒤로 보냄
+                    arr.push(front);
+                    continue;
                 }
-                else {
-                    answer++;
-                    if (location == 0) return answer;
-                    else location--;
+
+                // 횟수 증가
+                answer++;
+
+                // 현재 인쇄할 문서가 내가 요청한 문서가 맞다면
+                if (front.target) {
+                return answer;
                 }
+                // else
+                // 요청하지 않은 문서는 중요도에 따라 횟수 증가 후 그냥 넘김
             }
-
             return answer;
         }
         let priorities = [2, 1, 3, 2];
